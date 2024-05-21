@@ -1,0 +1,198 @@
+// app global css in SCSS form
+$color-background-default: #FFFFFF;
+$color-primary-default: #99CCFF;
+$color-secondary-default: #99CCFF;
+$color-text-default: #333333;
+$color-negative-default: #FFCCCC;
+$color-positive-default: #CCFFCC;
+$color-icon-default: #333333;
+$color-border-default: lighten(#CCCCFF, 2%);
+$color-border-text-default: #333333;
+$color-item-background-default: #FFFFFF;
+$color-hover-bg-default: #99CCFF;
+$color-hover-text-default: #FFFFFF;
+$color-hero-image-background-image-default: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+$color-hero-image-filter-default: blur(72px);
+$color-hoverable-hover-default: lighten(#99CCFF, 5%);
+
+// 暗黑模式
+$color-dark-page: #212121;
+$color-bg-dark: #212121;
+$color-text-dark: rgb(236, 236, 236);
+$color-primary-dark: #747bff;
+$color-secondary-dark: #CCCC99;
+$color-negative-dark: #FF6666;
+$color-positive-dark: #669999;
+$color-icon-dark: rgb(236, 236, 236);
+$color-border-dark: #666666;
+$color-border-text-dark: rgb(236, 236, 236);
+$color-item-background-dark: #212121;
+$color-hover-bg-dark: rgb(236, 236, 236);
+$color-hover-text-dark: #212121;
+$color-hero-image-background-image-dark: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+$color-hero-image-filter-dark: blur(72px);
+$color-hoverable-hover-dark: lighten(#212121, 5%);
+
+// 洁净模式
+$color-bg-clean: rgb(204, 204, 255, 0.2);
+$color-text-clean: #666666;
+$color-primary-clean: #dadce0;
+$color-secondary-clean: #CCFFCC;
+$color-negative-clean: #FF6666;
+$color-positive-clean: #CCFF99;
+$color-icon-clean: #333333;
+$color-border-clean: #dadce0;
+$color-border-text-clean: #333333;
+$color-item-background-clean: #FFFFFF;
+$color-hover-bg-clean: #999999;
+$color-hover-text-clean: #FFFFFF;
+$color-hero-image-background-image-clean: linear-gradient(-45deg, #96eeb9 50%, #9ed1ed 50%);
+$color-hero-image-filter-clean: blur(72px);
+$color-hoverable-hover-clean: lighten(#dadce0, 5%);
+
+// 优雅模式
+$color-bg-elegant: #FFFFFF;
+$color-text-elegant: rgb(51, 51, 51);
+$color-primary-elegant: #ed6ea0;
+$color-secondary-elegant: #FF99CC;
+$color-negative-elegant: #FF6666;
+$color-positive-elegant: #FFCC99;
+$color-icon-elegant: #666666;
+$color-border-elegant: lighten(#ed6ea0, 20%);
+$color-border-text-elegant: #333333;
+$color-item-background-elegant: #FFFFFF;
+$color-hover-bg-elegant: lighten(#747bff, 8%);
+$color-hover-text-elegant: #FFFFFF;
+$color-hero-image-background-image-elegant: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+$color-hero-image-filter-elegant: blur(72px);
+$color-hoverable-hover-elegant: lighten(#FF9999, 5%);
+
+
+// 古典模式
+$color-bg-classic: lighten(#CC9933, 25%);
+$color-text-classic: #333333;
+$color-primary-classic: lighten(#663366, 15%);
+$color-secondary-classic: lighten(#663366, 20%);
+$color-negative-classic: #CC3366;
+$color-positive-classic: #6699CC;
+$color-icon-classic: #FFFFFF;
+$color-border-classic: #336666;
+$color-border-text-classic: #FFFFFF;
+$color-item-background-classic: #CC9933;
+$color-hover-bg-classic: lighten(#CC9933, 5%);
+$color-hover-text-classic: #333333;
+$color-hero-image-background-image-classic: linear-gradient(-45deg, lighten(#663366, 10%) 50%, lighten(#336666, 20%) 60%);
+$color-hero-image-filter-classic: blur(72px);
+$color-hoverable-hover-classic: lighten(#CC9933, 5%);
+
+
+$themes: (default: (background: $color-background-default,
+    primary: $color-primary-default,
+    secondary: $color-secondary-default,
+    text: $color-text-default,
+    negative: $color-negative-default,
+    positive: $color-positive-default,
+    icon: $color-icon-default,
+    border: $color-border-default,
+    border-text: $color-border-text-default,
+    item-background: $color-item-background-default,
+    hover-bg: $color-hover-bg-default,
+    hover-text: $color-hover-text-default,
+    hero-image-background-image: $color-hero-image-background-image-default,
+    hero-image-filter: $color-hero-image-filter-default,
+    hoverable-hover: $color-hoverable-hover-default, ),
+  dark: (dark-page: $color-dark-page,
+    background: $color-bg-dark,
+    primary: $color-primary-dark,
+    secondary: $color-secondary-dark,
+    text: $color-text-dark,
+    negative: $color-negative-dark,
+    positive: $color-positive-dark,
+    icon: $color-icon-dark,
+    border: $color-border-dark,
+    border-text: $color-border-text-dark,
+    item-background: $color-item-background-dark,
+    hover-bg: $color-hover-bg-dark,
+    hover-text: $color-hover-text-dark,
+    hero-image-background-image: $color-hero-image-background-image-dark,
+    hero-image-filter: $color-hero-image-filter-dark,
+    hoverable-hover: $color-hoverable-hover-dark),
+  clean: (background: $color-bg-clean,
+    primary: $color-primary-clean,
+    secondary: $color-secondary-clean,
+    text: $color-text-clean,
+    negative: $color-negative-clean,
+    positive: $color-positive-clean,
+    icon: $color-icon-clean,
+    border: $color-border-clean,
+    border-text: $color-border-text-clean,
+    item-background: $color-item-background-clean,
+    hover-bg: $color-hover-bg-clean,
+    hover-text: $color-hover-text-clean,
+    hero-image-background-image: $color-hero-image-background-image-clean,
+    hero-image-filter: $color-hero-image-filter-clean,
+    hoverable-hover: $color-hoverable-hover-clean),
+  elegant: (background: $color-bg-elegant,
+    primary: $color-primary-elegant,
+    secondary: $color-secondary-elegant,
+    text: $color-text-elegant,
+    negative: $color-negative-elegant,
+    positive: $color-positive-elegant,
+    icon: $color-icon-elegant,
+    border: $color-border-elegant,
+    border-text: $color-border-text-elegant,
+    item-background: $color-item-background-elegant,
+    hover-bg: $color-hover-bg-elegant,
+    hover-text: $color-hover-text-elegant,
+    hero-image-background-image: $color-hero-image-background-image-elegant,
+    hero-image-filter: $color-hero-image-filter-elegant,
+    hoverable-hover: $color-hoverable-hover-elegant),
+  classic: (background: $color-bg-classic,
+    primary: $color-primary-classic,
+    secondary: $color-secondary-classic,
+    text: $color-text-classic,
+    negative: $color-negative-classic,
+    positive: $color-positive-classic,
+    icon: $color-icon-classic,
+    border: $color-border-classic,
+    border-text: $color-border-text-classic,
+    item-background: $color-item-background-classic,
+    hover-bg: $color-hover-bg-classic,
+    hover-text: $color-hover-text-classic,
+    hero-image-background-image: $color-hero-image-background-image-classic,
+    hero-image-filter: $color-hero-image-filter-classic,
+    hoverable-hover: $color-hoverable-hover-classic));
+
+@mixin apply-theme($theme-name: default) {
+  $theme-map: map-get($themes, $theme-name);
+
+  @each $key,
+  $value in $theme-map {
+    --q-#{$key}: #{$value};
+  }
+}
+
+:root {
+  @include apply-theme(default);
+}
+
+.dark {
+  @include apply-theme(dark);
+}
+
+.clean {
+  @include apply-theme(clean);
+}
+
+.elegant {
+  @include apply-theme(elegant);
+}
+
+.classic {
+  @include apply-theme(classic);
+}
+
+
+.q-tab-panels {
+  background: unset;
+}

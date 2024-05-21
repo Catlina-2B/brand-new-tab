@@ -1,0 +1,12 @@
+.private-box {
+  width: 100%;
+
+  .private-key-input {
+    width: 100%;
+  }
+
+  .random {
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+}

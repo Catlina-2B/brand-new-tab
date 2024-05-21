@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "MaShanZheng";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./MaShanZheng-Regular.ttf");
+  unicode-range: U+4E00-U+9FFF;;
+}
+
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 100;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-Thin.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 200;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-ExtraLight.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-Light.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-Regular.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 500;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-Medium.ttf") format('truetype');
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-emiBold.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 700;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-Bold.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 800;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-ExtraBold.ttf");
+  unicode-range: U+0000-00FF;
+}
+
+@font-face {
+  font-family: "Ubantu Sans";
+  font-weight: 900;
+  font-style: normal;
+  src: url("./Ubuntu_Sans/UbuntuSans-BoldItalic.ttf");
+  unicode-range: U+0000-00FF;
+}
