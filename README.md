@@ -84,7 +84,7 @@ Brand New Tab 提供多种主题以满足您的偏好和环境需求：
 
 ## 联系方式
 
-如果您有任何问题、建议或反馈，请在 GitHub 上提交 issue 或通过 [your-email@example.com](mailto:your-email@example.com) 联系维护者。
+如果您有任何问题、建议或反馈，请在 GitHub 上提交 issue 或通过 [catlina186@gmail.com](mailto:catlina186@gmail.com) 联系维护者。
 
 ---
 
@@ -178,7 +178,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For questions, suggestions, or feedback, please open an issue on GitHub or contact the maintainer at [your-email@example.com](mailto:your-email@example.com).
+For questions, suggestions, or feedback, please open an issue on GitHub or contact the maintainer at [catlina186@gmail.com](mailto:catlina186@gmail.com).
 
 ---
 
