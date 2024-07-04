@@ -70,6 +70,10 @@ const routes: RouteRecordRaw[] = [
           {
             path: 'draw-online',
             component: () => import('pages/Frontend/Draw/index.vue')
+          },
+          {
+            path: 'color-select',
+            component: () => import('pages/Frontend/Color/index.vue')
           }
         ]
       }

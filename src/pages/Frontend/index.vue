@@ -27,6 +27,15 @@
       </span>
       在线画板
     </router-link>
+    <router-link
+      to="/front-end/color-select"
+      class="flex-column-center-center router-item"
+    >
+      <span class="icon">
+        <IconColor width="20" height="20" />
+      </span>
+      颜色进制转换
+    </router-link>
   </div>
   <router-view></router-view>
 </template>
@@ -35,6 +44,7 @@
 import IconImageBase64 from 'src/assets/svg/IconImageBase64.vue';
 import IconJsonDiff from 'src/assets/svg/IconJsonDiff.vue';
 import IconDraw from 'src/assets/svg/IconDraw.vue';
+import IconColor from 'src/assets/svg/IconColor.vue';
 
 defineOptions({
   name: 'convert-container',

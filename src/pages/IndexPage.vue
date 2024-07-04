@@ -1,5 +1,19 @@
 <template>
+  <div class="update flex-left-center">
+    <IconUpdate width="18" height="18" />
+    <p class="update-text">
+      启动页新增时间组件，前端工具新增颜色工具（颜色进制转换、常用颜色搭配）
+    </p>
+  </div>
   <div class="index-container">
+    <div class="times">
+      <p><span>时间戳</span>{{ timestamp }}</p>
+      <p><span>UTC时间</span>{{ utcTime }}</p>
+      <p><span>北京时间</span>{{ beijingTime }}</p>
+      <p><span>伦敦时间</span>{{ londonTime }}</p>
+      <p><span>纽约时间</span>{{ newYorkTime }}</p>
+      <p><span>太平洋时间</span>{{ pacificTime }}</p>
+    </div>
     <div class="flex-center-center main-content">
       <div class="index-content flex-column-right-center">
         <div class="img-box">
@@ -19,11 +33,38 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import copywrite from '../assets/copywrite';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+import IconUpdate from 'src/assets/svg/IconUpdate.vue';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 defineOptions({
   name: 'IndexPage',
 });
+
+const timestamp = ref<number>(Date.now());
+const beijingTime = ref<string>(
+  dayjs().tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss')
+);
+const newYorkTime = ref<string>(
+  dayjs().tz('America/New_York').format('YYYY-MM-DD HH:mm:ss')
+);
+const utcTime = ref<string>(dayjs().utc().format('YYYY-MM-DD HH:mm:ss'));
+const londonTime = ref<string>(
+  dayjs().tz('Europe/London').format('YYYY-MM-DD HH:mm:ss')
+);
+const singaporeTime = ref<string>(
+  dayjs().tz('Asia/Singapore').format('YYYY-MM-DD HH:mm:ss')
+);
+const pacificTime = ref<string>(
+  dayjs().tz('America/Los_Angeles').format('YYYY-MM-DD HH:mm:ss')
+);
 
 const list = import.meta.globEager('../assets/img/light*.png');
 
@@ -38,12 +79,58 @@ const imgList = Object.keys(list).map((key) => {
 });
 
 const radomImageIndex = Math.floor(Math.random() * imgList.length);
+
+onMounted(() => {
+  setInterval(() => {
+    timestamp.value = Date.now();
+    beijingTime.value = dayjs()
+      .tz('Asia/Shanghai')
+      .format('YYYY-MM-DD HH:mm:ss');
+    newYorkTime.value = dayjs()
+      .tz('America/New_York')
+      .format('YYYY-MM-DD HH:mm:ss');
+    utcTime.value = dayjs().utc().format('YYYY-MM-DD HH:mm:ss');
+    londonTime.value = dayjs()
+      .tz('Europe/London')
+      .format('YYYY-MM-DD HH:mm:ss');
+    singaporeTime.value = dayjs()
+      .tz('Asia/Singapore')
+      .format('YYYY-MM-DD HH:mm:ss');
+    pacificTime.value = dayjs()
+      .tz('America/Los_Angeles')
+      .format('YYYY-MM-DD HH:mm:ss');
+  }, 1000);
+});
 </script>
 
 <style lang="scss" scoped>
 .index-container {
   width: 100%;
   height: 800px;
+  position: relative;
+  .times {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    font-size: 12px;
+    font-weight: 600;
+    span {
+      display: inline-block;
+      width: 180px;
+      text-align: right;
+      margin-right: 20px;
+    }
+  }
+}
+
+.update {
+  position: absolute;
+  bottom: 10px;
+  left: 80px;
+  .update-text {
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
 }
 
 .main-content {
