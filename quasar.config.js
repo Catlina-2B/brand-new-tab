@@ -8,9 +8,9 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-
 const { configure } = require('quasar/wrappers');
 const path = require('path');
+const { nodePolyfills } = require('vite-plugin-node-polyfills');
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -20,16 +20,10 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [
-      'i18n',
-      'axios',
-    ],
+    boot: ['i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-    css: [
-      'app.scss',
-      'index.scss'
-    ],
+    css: ['app.scss', 'index.scss', 'tailwind.css'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -48,8 +42,8 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       target: {
-        browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
-        node: 'node20'
+        browser: ['es2020'],
+        node: 'node20',
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
@@ -71,33 +65,176 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      vitePlugins: [
-        ['@intlify/vite-plugin-vue-i18n', {
-          // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-          // compositionOnly: false,
-
-          // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
-          // you need to set `runtimeOnly: false`
-          // runtimeOnly: false,
-
-          // you need to set i18n resource including paths !
-          include: path.resolve(__dirname, './src/i18n/**')
-        }],
-        ['vite-plugin-checker', {
-          vueTsc: {
-            tsconfigPath: 'tsconfig.vue-tsc.json'
+      rollupOptions: {
+        external: [
+          '#alloc',
+          // Remove these node-specific externals since we want to use polyfills instead
+          // 'node:crypto',
+          // 'node:buffer',
+          // 'node:path',
+          // 'node:process',
+          // 'node:fs/promises',
+          // 'node:http',
+        ],
+        output: {
+          manualChunks: {
+            web3: ['@solana/web3.js'],
+            'spl-token': ['@solana/spl-token'],
+            raydium: ['@raydium-io/raydium-sdk-v2'],
           },
-          eslint: {
-            lintCommand: 'eslint "./**/*.{js,ts,mjs,cjs,vue}"'
-          }
-        }, { server: false }]
-      ]
+        },
+      },
+
+      optimizeDeps: {
+        exclude: ['uint8arrays', '@soceanfi/solana-cli-config'],
+        include: [
+          '@solana/web3.js',
+          '@solana/spl-token',
+          '@raydium-io/raydium-sdk-v2',
+        ],
+        esbuildOptions: {
+          target: 'es2020',
+          supported: {
+            bigint: true,
+          },
+        },
+      },
+
+      alias: {
+        '#alloc': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/alloc.js'
+        ),
+        '#util': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/util'
+        ),
+        '#from-string': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/from-string.js'
+        ),
+        '#to-string': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/to-string.js'
+        ),
+        '#compare': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/compare.js'
+        ),
+        '#concat': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/concat.js'
+        ),
+        'uint8arrays/to-string': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/to-string.js'
+        ),
+        'uint8arrays/from-string': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/from-string.js'
+        ),
+        'uint8arrays/concat': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/concat.js'
+        ),
+        'uint8arrays/compare': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/compare.js'
+        ),
+        'uint8arrays/alloc': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/alloc.js'
+        ),
+        'uint8arrays/equals': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/equals.js'
+        ),
+        'uint8arrays/xor': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/xor.js'
+        ),
+        'uint8arrays/xor-compare': path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/xor-compare.js'
+        ),
+        uint8arrays: path.resolve(
+          __dirname,
+          'node_modules/uint8arrays/dist/src/index.js'
+        ),
+        fs: 'rollup-plugin-node-polyfills/polyfills/fs',
+        path: 'rollup-plugin-node-polyfills/polyfills/path',
+        os: 'rollup-plugin-node-polyfills/polyfills/os',
+      },
+
+      define: {
+        'process.env.NODE_DEBUG': 'false',
+        'process.platform': JSON.stringify('browser'),
+        'process.version': JSON.stringify('v16.0.0'),
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        global: 'globalThis',
+      },
+
+      build: {
+        commonjsOptions: {
+          transformMixedEsModules: true,
+          include: [/uint8arrays/, /node_modules/],
+        },
+      },
+
+      vitePlugins: [
+        [
+          '@intlify/vite-plugin-vue-i18n',
+          {
+            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+            // compositionOnly: false,
+
+            // if you want to use named tokens in your Vue I18n messages, such as 'Hello {name}',
+            // you need to set `runtimeOnly: false`
+            // runtimeOnly: false,
+
+            // you need to set i18n resource including paths !
+            include: path.resolve(__dirname, './src/i18n/**'),
+          },
+        ],
+        [
+          'vite-plugin-checker',
+          {
+            vueTsc: {
+              tsconfigPath: 'tsconfig.vue-tsc.json',
+            },
+            eslint: {
+              lintCommand: 'eslint "./**/*.{js,ts,mjs,cjs,vue}"',
+            },
+          },
+          { server: false },
+        ],
+        nodePolyfills({
+          globals: {
+            Buffer: true,
+            global: true,
+            process: true,
+          },
+          protocolImports: true,
+          include: [
+            'buffer',
+            'process',
+            'util',
+            'stream',
+            'events',
+            'crypto',
+            'path',
+            'fs',
+            'os',
+            'http',
+          ],
+        }),
+      ],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       // https: true
-      open: false // opens browser window automatically
+      open: false, // opens browser window automatically
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
@@ -115,7 +252,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [],
     },
 
     // animations: 'all', // --- includes all animations
@@ -137,7 +274,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
     ssr: {
       // ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
-                                          // will mess up SSR
+      // will mess up SSR
 
       // extendSSRWebserverConf (esbuildConf) {},
       // extendPackageJson (json) {},
@@ -148,11 +285,11 @@ module.exports = configure(function (/* ctx */) {
       // manualPostHydrationTrigger: true,
 
       prodPort: 3000, // The default port that the production server should use
-                      // (gets superseded if process.env.PORT is specified at runtime)
+      // (gets superseded if process.env.PORT is specified at runtime)
 
       middlewares: [
-        'render' // keep this as last one
-      ]
+        'render', // keep this as last one
+      ],
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
@@ -176,7 +313,7 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
@@ -190,13 +327,11 @@ module.exports = configure(function (/* ctx */) {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -204,18 +339,16 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'mytab'
-      }
+        appId: 'mytab',
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex
     bex: {
-      contentScripts: [
-        'my-content-script'
-      ],
+      contentScripts: ['my-content-script'],
 
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
-    }
-  }
+    },
+  };
 });

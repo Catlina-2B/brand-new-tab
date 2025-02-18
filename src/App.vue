@@ -56,6 +56,7 @@ onBeforeMount(() => {
 <style lang="scss">
 @import './assets/font/font.css';
 @import 'src/css/flex.scss';
+@import 'src/css/tailwind.css';
 
 body {
   margin: 0;

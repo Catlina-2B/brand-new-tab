@@ -76,6 +76,28 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/Frontend/Color/index.vue')
           }
         ]
+      },
+      {
+        path: 'sol',
+        component: () => import('pages/SOL/index.vue'),
+        children: [
+          {
+            path: 'create-spl-token',
+            component: () => import('pages/SOL/CreateSPLToken/index.vue')
+          },
+          {
+            path: 'create-market',
+            component: () => import('pages/SOL/CreateMarket/index.vue')
+          },
+          {
+            path: 'batch-transfer',
+            component: () => import('pages/SOL/BatchTransfer/index.vue')
+          },
+          {
+            path: 'close-account',
+            component: () => import('pages/SOL/CloseAccount/index.vue')
+          }
+        ]
       }
     ]
   },

@@ -2,7 +2,7 @@
   <div class="update flex-left-center">
     <IconUpdate width="18" height="18" />
     <p class="update-text">
-      启动页新增时间组件，前端工具新增颜色工具（颜色进制转换、常用颜色搭配）
+      增加Solana链关闭账户功能
     </p>
   </div>
   <div class="index-container">
@@ -108,12 +108,14 @@ onMounted(() => {
   width: 100%;
   height: 800px;
   position: relative;
+
   .times {
     position: absolute;
     right: 20px;
     top: 0px;
     font-size: 12px;
     font-weight: 600;
+
     span {
       display: inline-block;
       width: 180px;
@@ -127,6 +129,7 @@ onMounted(() => {
   position: absolute;
   bottom: 10px;
   left: 80px;
+
   .update-text {
     margin-bottom: 0;
     margin-left: 10px;
@@ -144,6 +147,7 @@ onMounted(() => {
     width: 100%;
     text-align: center;
     position: relative;
+
     .hero-bg {
       position: absolute;
       width: 320px;

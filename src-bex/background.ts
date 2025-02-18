@@ -1,6 +1,6 @@
 import { bexBackground } from 'quasar/wrappers';
 
-function openExtension () {
+function openExtension() {
   chrome.tabs.create(
     {
       url: chrome.runtime.getURL('www/index.html')

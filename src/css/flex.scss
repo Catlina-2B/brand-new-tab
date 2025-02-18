@@ -138,11 +138,13 @@
   align-items: center;
 }
 
-
 .flex-column-right-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+}
 
+.flex-1 {
+  flex: 1;
 }

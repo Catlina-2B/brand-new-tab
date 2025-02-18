@@ -3,11 +3,7 @@
     <div class="layout">
       <div class="left-tab flex-column-between-center">
         <div class="flex-column-center-top left-link">
-          <router-link
-            v-for="(item, index) in leftRoutes"
-            :key="index"
-            :to="item.path"
-          >
+          <router-link v-for="(item, index) in leftRoutes" :key="index" :to="item.path">
             <span class="wrap-icon">
               <component :is="item.icon" width="20" height="20" />
               <q-tooltip anchor="center right" self="center left">{{
@@ -43,13 +39,8 @@
         <q-splitter v-model="splitterModel" style="height: 450px">
           <template v-slot:before>
             <q-tabs v-model="setting" vertical class="text-teal">
-              <q-tab
-                v-for="(item, index) in settingOptions"
-                :name="item.value"
-                :label="item.label"
-                :key="index"
-                no-caps
-              />
+              <q-tab v-for="(item, index) in settingOptions" :name="item.value" :label="item.label" :key="index"
+                no-caps />
             </q-tabs>
           </template>
           <template v-slot:after>
@@ -60,13 +51,8 @@
                   <q-btn color="primary" no-caps :label="currentTheme">
                     <q-menu>
                       <q-list style="min-width: 100px">
-                        <q-item
-                          clickable
-                          v-close-popup
-                          v-for="(item, index) in themes"
-                          :key="index"
-                          @click="chooseTheme(item)"
-                        >
+                        <q-item clickable v-close-popup v-for="(item, index) in themes" :key="index"
+                          @click="chooseTheme(item)">
                           <q-item-section>{{ item.label }}</q-item-section>
                         </q-item>
                       </q-list>
@@ -90,6 +76,7 @@
 import { ref, onMounted } from 'vue';
 import SettingsIcon from 'src/assets/svg/SettingIcon.vue';
 import SolidityIcon from 'src/assets/svg/IconSolidity.vue';
+import IconSOL from 'src/assets/svg/IconSOL.vue';
 import HomeIcon from 'src/assets/svg/IconHome.vue';
 import ConvertIcon from 'src/assets/svg/IconConvert.vue';
 import FrontendIcon from 'src/assets/svg/IconFrontend.vue';
@@ -120,6 +107,11 @@ const leftRoutes = [
     name: 'ETH',
     path: '/eth/encode',
     icon: SolidityIcon,
+  },
+  {
+    name: 'SOL',
+    path: '/sol/create-spl-token',
+    icon: IconSOL,
   },
   {
     name: 'Convert',
@@ -185,6 +177,7 @@ onMounted(() => {
 
 .left-tab {
   width: 55px;
+
   .left-link {
     gap: 15px;
   }
@@ -205,6 +198,7 @@ onMounted(() => {
   width: 100%;
   height: 60px;
   padding: 0 20px;
+
   .label {
     margin-bottom: 0;
   }
