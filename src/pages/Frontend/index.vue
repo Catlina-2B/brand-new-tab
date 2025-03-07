@@ -1,36 +1,24 @@
 <template>
-  <div class="router-list flex-left-center">
-    <router-link
-      to="/front-end/json-diff"
-      class="flex-column-center-center router-item"
-    >
+  <div class="router-list flex-left-center p-4">
+    <router-link to="/front-end/json-diff" class="flex-column-center-center router-item">
       <span class="icon">
         <IconJsonDiff width="20" height="20" />
       </span>
       JSON Diff
     </router-link>
-    <router-link
-      to="/front-end/image-to-base64"
-      class="flex-column-center-center router-item"
-    >
+    <router-link to="/front-end/image-to-base64" class="flex-column-center-center router-item">
       <span class="icon">
         <IconImageBase64 width="20" height="20" />
       </span>
       图片转Base64
     </router-link>
-    <router-link
-      to="/front-end/draw-online"
-      class="flex-column-center-center router-item"
-    >
+    <router-link to="/front-end/draw-online" class="flex-column-center-center router-item">
       <span class="icon">
         <IconDraw width="20" height="20" />
       </span>
       在线画板
     </router-link>
-    <router-link
-      to="/front-end/color-select"
-      class="flex-column-center-center router-item"
-    >
+    <router-link to="/front-end/color-select" class="flex-column-center-center router-item">
       <span class="icon">
         <IconColor width="20" height="20" />
       </span>
@@ -72,19 +60,23 @@ defineOptions({
   color: var(--q-icon);
   cursor: pointer;
   text-decoration: none;
+
   .icon {
     padding: 6px;
     box-sizing: content-box;
     display: inline-flex;
   }
+
   &:hover {
     background: var(--q-hover-bg);
     transition: background 0.2s ease-in;
     color: var(--q-hover-text);
+
     svg {
       fill: var(--q-hover-text);
       stroke: var(--q-hover-text);
     }
+
     * {
       color: var(--q-hover-text);
     }

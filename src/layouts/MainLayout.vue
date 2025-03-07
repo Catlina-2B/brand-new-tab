@@ -24,8 +24,9 @@
         </div>
       </div>
       <q-page-container class="page-container">
-        <div class="flex-right-center"></div>
-        <div style="padding: 60px 20px; max-height: 100vh">
+        <div class="flex-right-center">
+        </div>
+        <div>
           <router-view />
         </div>
       </q-page-container>
@@ -73,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import SettingsIcon from 'src/assets/svg/SettingIcon.vue';
 import SolidityIcon from 'src/assets/svg/IconSolidity.vue';
 import IconSOL from 'src/assets/svg/IconSOL.vue';
@@ -81,6 +82,8 @@ import HomeIcon from 'src/assets/svg/IconHome.vue';
 import ConvertIcon from 'src/assets/svg/IconConvert.vue';
 import FrontendIcon from 'src/assets/svg/IconFrontend.vue';
 import GithubIcon from 'src/assets/svg/IconGithub.vue';
+import IconPapper from 'src/assets/svg/IconPapper.vue';
+import { useModeStore } from 'src/stores/mode-store';
 
 import Dialog from 'src/components/Dialog/index.vue';
 
@@ -92,6 +95,8 @@ import { themes, Theme, ThemeItem } from 'src/utils/const';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
+const modeStore = useModeStore();
+const isNotebookMode = computed(() => modeStore.isNotebookMode);
 
 defineOptions({
   name: 'MainLayout',
@@ -102,6 +107,11 @@ const leftRoutes = [
     name: 'Home',
     path: '/',
     icon: HomeIcon,
+  },
+  {
+    name: '笔记本',
+    path: '/papper',
+    icon: IconPapper,
   },
   {
     name: 'ETH',
@@ -161,22 +171,48 @@ onMounted(() => {
 .layout {
   display: flex;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .page-container {
   flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.flex-right-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.content-area {
+  padding: 60px 20px;
+
+  &.no-top-padding {
+    padding: 0;
+  }
 }
 
 .left-tab,
 .right-tab {
-  height: 100%;
+  height: 100vh;
   background-color: var(--q-border);
-  padding: 50px 5px;
-  padding-bottom: 20px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 .left-tab {
   width: 55px;
+  left: 0;
+  padding: 50px 5px 20px;
 
   .left-link {
     gap: 15px;
@@ -185,9 +221,14 @@ onMounted(() => {
 
 .right-tab {
   width: 300px;
-  max-height: 100vh;
+  right: 0;
   overflow-y: auto;
-  padding-top: 0;
+  padding: 0 5px 20px;
+}
+
+.page-container {
+  margin-left: 55px;
+  margin-right: 300px;
 }
 
 .settings {

@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "name": "浏览器工具插件规则",
+  "rules": [
+    {
+      "name": "Vue组件结构",
+      "pattern": "src/components/**/*.vue",
+      "template": "<!-- 组件描述 -->\n<template>\n  <!-- 组件模板内容 -->\n</template>\n\n<script lang=\"ts\">\nimport { defineComponent } from 'vue'\n\nexport default defineComponent({\n  name: '${1:ComponentName}',\n  props: {\n    // 组件属性\n  },\n  setup(props) {\n    // 组件逻辑\n    return {\n      // 返回模板需要的数据和方法\n    }\n  }\n})\n</script>\n\n<style lang=\"scss\" scoped>\n/* 组件样式 */\n</style>"
+    },
+    {
+      "name": "页面结构",
+      "pattern": "src/pages/**/*.vue",
+      "template": "<!-- 页面描述 -->\n<template>\n  <q-page padding>\n    <!-- 页面内容 -->\n  </q-page>\n</template>\n\n<script lang=\"ts\">\nimport { defineComponent } from 'vue'\n\nexport default defineComponent({\n  name: '${1:PageName}',\n  setup() {\n    // 页面逻辑\n    return {\n      // 返回模板需要的数据和方法\n    }\n  }\n})\n</script>\n\n<style lang=\"scss\" scoped>\n/* 页面样式 */\n</style>"
+    },
+    {
+      "name": "Pinia Store",
+      "pattern": "src/stores/**/*.ts",
+      "template": "import { defineStore } from 'pinia'\n\nexport const use${1:Feature}Store = defineStore('${2:feature}', {\n  state: () => ({\n    // 状态定义\n  }),\n  getters: {\n    // 计算属性\n  },\n  actions: {\n    // 方法\n  }\n})"
+    },
+    {
+      "name": "TypeScript接口",
+      "pattern": "src/types/**/*.ts",
+      "template": "export interface ${1:InterfaceName} {\n  // 接口属性定义\n}"
+    },
+    {
+      "name": "区块链工具",
+      "pattern": "src/utils/blockchain/**/*.ts",
+      "template": "/**\n * ${1:工具名称}\n * ${2:工具描述}\n */\n\n// 导入需要的依赖\n\n/**\n * ${3:函数描述}\n * @param {${4:ParamType}} ${5:paramName} - ${6:参数描述}\n * @returns {${7:ReturnType}} ${8:返回值描述}\n */\nexport function ${9:functionName}(${10:params}) {\n  // 函数实现\n}"
+    },
+    {
+      "name": "加密解密工具",
+      "pattern": "src/utils/crypto/**/*.ts",
+      "template": "/**\n * ${1:工具名称}\n * ${2:工具描述}\n */\n\n// 导入需要的依赖\n\n/**\n * ${3:函数描述}\n * @param {${4:ParamType}} ${5:paramName} - ${6:参数描述}\n * @returns {${7:ReturnType}} ${8:返回值描述}\n */\nexport function ${9:functionName}(${10:params}) {\n  // 函数实现\n}"
+    },
+    {
+      "name": "前端工具",
+      "pattern": "src/utils/frontend/**/*.ts",
+      "template": "/**\n * ${1:工具名称}\n * ${2:工具描述}\n */\n\n// 导入需要的依赖\n\n/**\n * ${3:函数描述}\n * @param {${4:ParamType}} ${5:paramName} - ${6:参数描述}\n * @returns {${7:ReturnType}} ${8:返回值描述}\n */\nexport function ${9:functionName}(${10:params}) {\n  // 函数实现\n}"
+    },
+    {
+      "name": "路由配置",
+      "pattern": "src/router/**/*.ts",
+      "template": "import { RouteRecordRaw } from 'vue-router'\n\nconst routes: RouteRecordRaw[] = [\n  // 路由配置\n]\n\nexport default routes"
+    },
+    {
+      "name": "API服务",
+      "pattern": "src/services/**/*.ts",
+      "template": "/**\n * ${1:服务名称}\n * ${2:服务描述}\n */\n\n// 导入需要的依赖\n\nexport const ${3:serviceName} = {\n  /**\n   * ${4:方法描述}\n   * @param {${5:ParamType}} ${6:paramName} - ${7:参数描述}\n   * @returns {Promise<${8:ReturnType}>} ${9:返回值描述}\n   */\n  async ${10:methodName}(${11:params}) {\n    // 方法实现\n  }\n}"
+    },
+    {
+      "name": "Solana相关工具",
+      "pattern": "src/utils/solana/**/*.ts",
+      "template": "/**\n * ${1:工具名称}\n * ${2:工具描述}\n */\n\nimport { Connection, PublicKey } from '@solana/web3.js'\n\n/**\n * ${3:函数描述}\n * @param {${4:ParamType}} ${5:paramName} - ${6:参数描述}\n * @returns {${7:ReturnType}} ${8:返回值描述}\n */\nexport function ${9:functionName}(${10:params}) {\n  // 函数实现\n}"
+    },
+    {
+      "name": "项目结构",
+      "folders": [
+        "src/components",
+        "src/pages",
+        "src/stores",
+        "src/types",
+        "src/utils/blockchain",
+        "src/utils/crypto",
+        "src/utils/frontend",
+        "src/utils/solana",
+        "src/router",
+        "src/services",
+        "src/assets",
+        "src/boot",
+        "src/layouts",
+        "public"
+      ]
+    },
+    {
+      "name": "导入顺序",
+      "importOrder": [
+        "^vue$",
+        "^vue-router$",
+        "^pinia$",
+        "^quasar",
+        "^@solana",
+        "^@/",
+        "^[./]"
+      ]
+    },
+    {
+      "name": "文件命名规则",
+      "fileNaming": {
+        "components": "PascalCase",
+        "pages": "PascalCase",
+        "stores": "camelCase",
+        "utils": "camelCase",
+        "types": "camelCase",
+        "services": "camelCase"
+      }
+    }
+  ],
+  "linting": {
+    "eslint": {
+      "extends": [
+        "plugin:vue/vue3-essential",
+        "eslint:recommended",
+        "@vue/typescript/recommended",
+        "@vue/prettier",
+        "@vue/prettier/@typescript-eslint"
+      ],
+      "rules": {
+        "vue/multi-word-component-names": "off",
+        "vue/no-v-html": "warn",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    }
+  }
+}

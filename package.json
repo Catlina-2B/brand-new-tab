@@ -1,6 +1,6 @@
 {
   "name": "brand-new-tab",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A new tab for me",
   "productName": "Brand New Tab",
   "author": "Catlina186@gmail.com",
@@ -20,6 +20,7 @@
     "@metaplex-foundation/mpl-token-metadata": "^3.3.0",
     "@metaplex-foundation/umi": "^1.0.0",
     "@metaplex-foundation/umi-bundle-defaults": "^1.0.0",
+    "@project-serum/borsh": "^0.2.5",
     "@quasar/extras": "^1.16.4",
     "@raydium-io/raydium-sdk-v2": "^0.1.102-alpha",
     "@rollup/plugin-inject": "^5.0.5",

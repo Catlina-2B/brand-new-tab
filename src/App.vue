@@ -15,6 +15,7 @@ defineOptions({
 
 onBeforeMount(() => {
   switchTheme((localStorage.getItem('theme') as Theme) || Theme.default);
+
   // 检查浏览器是否支持prefers-color-scheme媒体查询
   // if (
   //   window.matchMedia &&
@@ -88,16 +89,19 @@ img {
   padding: 10px;
   border-radius: 10px;
   transition: background 0.2s ease-in;
+
   * {
     transition: background 0.2s ease-in;
   }
 
   &:hover {
     background: var(--q-text);
+
     svg {
       fill: var(--q-background);
       stroke: var(--q-background);
     }
+
     * {
       color: var(--q-background);
     }

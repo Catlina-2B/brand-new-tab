@@ -8,6 +8,10 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       {
+        path: 'papper',
+        component: () => import('pages/Papper/index.vue')
+      },
+      {
         path: 'eth',
         component: ETH,
         children: [
@@ -96,6 +100,10 @@ const routes: RouteRecordRaw[] = [
           {
             path: 'close-account',
             component: () => import('pages/SOL/CloseAccount/index.vue')
+          },
+          {
+            path: 'idl',
+            component: () => import('pages/SOL/IDL/index.vue')
           }
         ]
       }

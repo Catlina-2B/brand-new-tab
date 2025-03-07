@@ -1,6 +1,9 @@
 import { store } from 'quasar/wrappers'
 import { createPinia } from 'pinia'
 import { Router } from 'vue-router';
+import { usePapperStore } from './papper-store';
+import { useSolStore } from './sol-store';
+import { useModeStore } from './mode-store';
 
 /*
  * When adding new properties to stores, you should also
@@ -30,3 +33,9 @@ export default store((/* { ssrContext } */) => {
 
   return pinia
 })
+
+export {
+  usePapperStore,
+  useSolStore,
+  useModeStore
+};

@@ -1,27 +1,18 @@
 <template>
-  <div class="router-list flex-left-center">
-    <router-link
-      to="/convert/convert"
-      class="flex-column-center-center router-item"
-    >
+  <div class="router-list flex-left-center p-4">
+    <router-link to="/convert/convert" class="flex-column-center-center router-item">
       <span class="icon">
         <IconConvert width="20" height="20" />
       </span>
       数据转换
     </router-link>
-    <router-link
-      to="/convert/hash"
-      class="flex-column-center-center router-item"
-    >
+    <router-link to="/convert/hash" class="flex-column-center-center router-item">
       <span class="icon">
         <IconHash width="20" height="20" />
       </span>
       哈希计算
     </router-link>
-    <router-link
-      to="/convert/encode-decode"
-      class="flex-column-center-center router-item"
-    >
+    <router-link to="/convert/encode-decode" class="flex-column-center-center router-item">
       <span class="icon">
         <IconEncode width="20" height="20" />
       </span>
@@ -62,19 +53,23 @@ defineOptions({
   color: var(--q-icon);
   cursor: pointer;
   text-decoration: none;
+
   .icon {
     padding: 6px;
     box-sizing: content-box;
     display: inline-flex;
   }
+
   &:hover {
     background: var(--q-hover-bg);
     transition: background 0.2s ease-in;
     color: var(--q-primary);
+
     svg {
       fill: var(--q-primary);
       stroke: var(--q-primary);
     }
+
     * {
       color: var(--q-primary);
     }

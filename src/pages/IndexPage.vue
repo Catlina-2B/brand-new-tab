@@ -1,43 +1,55 @@
 <template>
-  <div class="update flex-left-center">
-    <IconUpdate width="18" height="18" />
-    <p class="update-text">
-      增加Solana链关闭账户功能
-    </p>
+  <div class="mode-toggle">
+    <q-toggle v-model="isNotebookModeLocal" color="primary" icon="book" @update:model-value="toggleNotebookMode">
+      <q-tooltip>{{ isNotebookModeLocal ? '已启用笔记本模式' : '点击启用笔记本模式' }}</q-tooltip>
+    </q-toggle>
   </div>
-  <div class="index-container">
-    <div class="times">
-      <p><span>时间戳</span>{{ timestamp }}</p>
-      <p><span>UTC时间</span>{{ utcTime }}</p>
-      <p><span>北京时间</span>{{ beijingTime }}</p>
-      <p><span>伦敦时间</span>{{ londonTime }}</p>
-      <p><span>纽约时间</span>{{ newYorkTime }}</p>
-      <p><span>太平洋时间</span>{{ pacificTime }}</p>
+  <div v-if="!isNotebookModeLocal">
+    <div class="update flex-left-center">
+      <IconUpdate width="18" height="18" />
+      <p class="update-text">
+        增加Solana链关闭账户功能
+      </p>
     </div>
-    <div class="flex-center-center main-content">
-      <div class="index-content flex-column-right-center">
-        <div class="img-box">
-          <div class="hero-bg"></div>
-          <img :src="imgList[radomImageIndex].url" alt="img" />
+    <div class="index-container">
+      <div class="times">
+        <p><span>时间戳</span>{{ timestamp }}</p>
+        <p><span>UTC时间</span>{{ utcTime }}</p>
+        <p><span>北京时间</span>{{ beijingTime }}</p>
+        <p><span>伦敦时间</span>{{ londonTime }}</p>
+        <p><span>纽约时间</span>{{ newYorkTime }}</p>
+        <p><span>太平洋时间</span>{{ pacificTime }}</p>
+      </div>
+      <div class="flex-center-center main-content">
+        <div class="index-content flex-column-right-center">
+          <div class="img-box">
+            <div class="hero-bg"></div>
+            <img :src="imgList[radomImageIndex].url" alt="img" />
+          </div>
+          <p class="content">
+            {{ imgList[radomImageIndex].copywrite.content }}
+          </p>
+          <p class="split"></p>
+          <p class="author">
+            {{ imgList[radomImageIndex].copywrite.author }}
+          </p>
         </div>
-        <p class="content">
-          {{ imgList[radomImageIndex].copywrite.content }}
-        </p>
-        <p class="split"></p>
-        <p class="author">
-          {{ imgList[radomImageIndex].copywrite.author }}
-        </p>
       </div>
     </div>
+  </div>
+  <div v-else class="papper-container">
+    <Papper />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import copywrite from '../assets/copywrite';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { useModeStore } from 'src/stores/mode-store';
+import Papper from 'src/pages/Papper/index.vue';
 
 import IconUpdate from 'src/assets/svg/IconUpdate.vue';
 
@@ -47,6 +59,19 @@ dayjs.extend(timezone);
 defineOptions({
   name: 'IndexPage',
 });
+
+const modeStore = useModeStore();
+const isNotebookModeLocal = computed({
+  get: () => modeStore.isNotebookMode,
+  set: (value) => {
+    // 这里不需要做任何事情，因为我们使用 toggleNotebookMode 来更新状态
+  }
+});
+
+// 切换笔记本模式
+const toggleNotebookMode = () => {
+  modeStore.toggleNotebookMode();
+};
 
 const timestamp = ref<number>(Date.now());
 const beijingTime = ref<string>(
@@ -104,10 +129,26 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.mode-toggle {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 100;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.papper-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .index-container {
   width: 100%;
   height: 800px;
   position: relative;
+  padding: 60px;
 
   .times {
     position: absolute;

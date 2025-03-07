@@ -16,6 +16,7 @@
       <q-route-tab name="create-market" label="Create Market" to="/sol/create-market" no-caps />
       <q-route-tab name="batch-transfer" label="Batch Transfer" to="/sol/batch-transfer" no-caps />
       <q-route-tab name="close-account" label="Close Account" to="/sol/close-account" no-caps />
+      <q-route-tab name="idl" label="IDL" to="/sol/idl" no-caps />
     </q-tabs>
     <div style="padding: 30px 10px">
       <router-view />
