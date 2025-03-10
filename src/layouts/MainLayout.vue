@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import SettingsIcon from 'src/assets/svg/SettingIcon.vue';
 import SolidityIcon from 'src/assets/svg/IconSolidity.vue';
 import IconSOL from 'src/assets/svg/IconSOL.vue';
@@ -83,7 +83,6 @@ import ConvertIcon from 'src/assets/svg/IconConvert.vue';
 import FrontendIcon from 'src/assets/svg/IconFrontend.vue';
 import GithubIcon from 'src/assets/svg/IconGithub.vue';
 import IconPapper from 'src/assets/svg/IconPapper.vue';
-import { useModeStore } from 'src/stores/mode-store';
 
 import Dialog from 'src/components/Dialog/index.vue';
 
@@ -95,8 +94,6 @@ import { themes, Theme, ThemeItem } from 'src/utils/const';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
-const modeStore = useModeStore();
-const isNotebookMode = computed(() => modeStore.isNotebookMode);
 
 defineOptions({
   name: 'MainLayout',

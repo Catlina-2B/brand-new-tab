@@ -174,7 +174,7 @@ const sortJsonKeys = (obj: any): any => {
   let sortedKeys: string[] = [];
 
   // 根据选择的排序方式进行排序
-  if (sortOptions.keyOrder === 'alphabetical') {
+  if (sortOptions.keyOrder.value === 'alphabetical') {
     sortedKeys = allKeys.sort((a, b) => {
       // 如果启用了数字键按数值排序，且两个键都可以转换为数字
       if (sortOptions.numericKeys && /^\d+$/.test(a) && /^\d+$/.test(b)) {
@@ -182,9 +182,9 @@ const sortJsonKeys = (obj: any): any => {
       }
       return a.localeCompare(b);
     });
-  } else if (sortOptions.keyOrder === 'length') {
+  } else if (sortOptions.keyOrder.value === 'length') {
     sortedKeys = allKeys.sort((a, b) => a.length - b.length || a.localeCompare(b));
-  } else if (sortOptions.keyOrder === 'type') {
+  } else if (sortOptions.keyOrder.value === 'type') {
     // 按类型排序：对象 > 数组 > 字符串 > 数字 > 布尔值 > null
     const getTypeWeight = (key: string) => {
       const value = obj[key];
@@ -215,7 +215,7 @@ const sortJsonKeys = (obj: any): any => {
 // 计算对比统计信息
 const calculateDiffStats = (oldObj: any, newObj: any) => {
   // 获取所有属性（包括嵌套属性）
-  const getAllProps = (obj: any, prefix: string = '', result: Set<string> = new Set()) => {
+  const getAllProps = (obj: any, prefix = '', result: Set<string> = new Set()) => {
     if (typeof obj !== 'object' || obj === null) {
       return result;
     }
