@@ -8,19 +8,11 @@
             <div class="row items-center justify-between q-mb-sm">
               <div class="text-h6">Note</div>
               <div>
-                <q-btn flat round color="primary" icon="refresh" @click="refreshNotes" class="q-mr-xs" />
                 <q-btn flat round color="primary" icon="add" @click="createNewNote" :disable="isCreating" />
                 <q-tooltip anchor="bottom middle" self="top middle" :offset="[0, 8]">
                   <div class="text-body2">添加新笔记</div>
                 </q-tooltip>
               </div>
-            </div>
-            <div class="row items-center justify-end q-mb-xs">
-              <q-btn flat dense color="grey" icon="cleaning_services" @click="cleanStorage" size="sm">
-                <q-tooltip anchor="bottom middle" self="top middle" :offset="[0, 8]">
-                  <div class="text-body2">修复存储问题</div>
-                </q-tooltip>
-              </q-btn>
             </div>
           </q-card-section>
 

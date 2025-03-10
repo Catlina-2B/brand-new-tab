@@ -63,15 +63,15 @@ defineOptions({
   &:hover {
     background: var(--q-hover-bg);
     transition: background 0.2s ease-in;
-    color: var(--q-primary);
+    color: var(--q-hover-text);
 
     svg {
-      fill: var(--q-primary);
-      stroke: var(--q-primary);
+      fill: var(--q-hover-text);
+      stroke: var(--q-hover-text);
     }
 
     * {
-      color: var(--q-primary);
+      color: var(--q-hover-text);
     }
   }
 }

@@ -1,18 +1,9 @@
 <template>
   <div class="all-tabs-container">
     <p class="all-tabs">All Tabs</p>
-    <q-input
-      v-model="searchText"
-      dense
-      outlined
-      placeholder="搜索tab"
-      class="search-tab"
-    ></q-input>
+    <q-input v-model="searchText" dense outlined placeholder="搜索tab" class="search-tab"></q-input>
     <q-list>
-      <template
-        v-for="(item, itemIndex) in tabsView"
-        :key="`item-${itemIndex}`"
-      >
+      <template v-for="(item, itemIndex) in tabsView" :key="`item-${itemIndex}`">
         <q-expansion-item expand-separator v-if="item.tabs.length > 1">
           <template v-slot:header>
             <div class="icon-box">
@@ -21,13 +12,8 @@
             <div class="item-title flex-left-center">{{ item.title }}</div>
           </template>
           <q-list>
-            <q-item
-              v-for="(tab, tabIndex) in item.tabs"
-              :key="`tab-${tabIndex}-${tab.id}`"
-              clickable
-              v-ripple
-              @click="goTab(tab)"
-            >
+            <q-item v-for="(tab, tabIndex) in item.tabs" :key="`tab-${tabIndex}-${tab.id}`" clickable v-ripple
+              @click="goTab(tab)">
               <q-item-section>
                 {{ tab.title }}
               </q-item-section>
@@ -35,13 +21,7 @@
           </q-list>
         </q-expansion-item>
         <template v-else>
-          <q-item
-            v-for="(tab, tabIndex) in item.tabs"
-            :key="tabIndex"
-            clickable
-            v-ripple
-            @click="goTab(tab)"
-          >
+          <q-item v-for="(tab, tabIndex) in item.tabs" :key="tabIndex" clickable v-ripple @click="goTab(tab)">
             <q-item-section avatar>
               <q-img :src="item.icon" width="25px"></q-img>
             </q-item-section>
@@ -77,10 +57,8 @@ const goTab = (tab: chrome.tabs.Tab) => {
 };
 
 onMounted(() => {
-  console.log('mounted');
   if (!chrome.tabs) return;
   chrome.tabs.query({}, (tabs) => {
-    console.log(tabs);
     myTabs.value = [...tabs];
   });
 });
@@ -100,14 +78,12 @@ function normalizeDomain(domain: string) {
 watch(
   myTabs,
   (newVal) => {
-    console.log('newVal', newVal);
     const groups: Record<string, TAB_ITEM> = {};
     // 将相同的主域的tab合并到一个group中，并设置group的title为网站的title
     newVal.forEach((tab) => {
       if (!tab.url) return;
       // const url = new URL(tab.url);
       const hostname = normalizeDomain(new URL(tab.url).hostname);
-      console.log(hostname);
       if (groups[hostname]) {
         groups[hostname].tabs.push(tab);
       } else {
@@ -119,7 +95,6 @@ watch(
         } as TAB_ITEM;
       }
     });
-    console.log('groups', groups);
     tabsView.value = Object.values(groups);
     tabsSource.value = Object.values(groups);
   },
@@ -183,20 +158,25 @@ watch(
     color: var(--q-border-text);
     border-radius: 10px;
   }
+
   .q-item__label {
     color: var(--q-border-text);
   }
-  .q-item__section--side > .q-icon {
+
+  .q-item__section--side>.q-icon {
     color: var(--q-border-text);
   }
+
   .q-expansion-item__container {
     background-color: var(--q-item-background);
     border-radius: 10px;
   }
+
   .q-item__section,
   .q-expansion-item {
     color: var(--q-border-text);
   }
+
   .q-field__native {
     color: var(--q-border-text);
   }

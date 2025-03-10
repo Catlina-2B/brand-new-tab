@@ -8,7 +8,7 @@
     <div class="update flex-left-center">
       <IconUpdate width="18" height="18" />
       <p class="update-text">
-        增加Solana链关闭账户功能
+        右上角增加了默认笔记本模式哦～
       </p>
     </div>
     <div class="index-container">
@@ -153,7 +153,7 @@ onMounted(() => {
   .times {
     position: absolute;
     right: 20px;
-    top: 0px;
+    top: 20px;
     font-size: 12px;
     font-weight: 600;
 
